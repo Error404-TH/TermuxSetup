@@ -1,0 +1,76 @@
+#!/bin/bash
+
+r="\e[1;91m"
+g="\e[1;92m"
+b="\e[1;96m"
+w="\e[1;97m"
+y="\e[1;93m"
+bl="\e[1;5m"
+re="\e[1;0m"
+ul="\e[1;4m"
+hi="\e[1;8m"
+
+author="${r}Author: ${y}Error404-TH"
+hub="${g}Github: ${y}https://github.com/Error404-TH/ \n"
+
+pkg update && pkg upgrade -y && pkg install -y root-repo unstable-repo x11-repo && pkg install -y figlet toilet python && pip install lolcat
+
+banner()
+
+{
+
+clear && echo -e $b && toilet  -F border DEDSEC
+echo -e $author
+echo -e $hub
+
+}
+
+main_module()
+{
+
+banner
+
+echo -e "+------------------------------+"
+echo -e "+      Termux Setup Menu       +"
+echo -e "+------------------------------+"
+echo -e "+                              +"
+echo -e "+     [T] - Termux Setup       +"
+echo -e "+     [N] - Nethunter Setup    +"
+echo -e "+     [E] - Exit               +"
+echo -e "+                              +"
+echo -e "+------------------------------+\n"
+
+read -p "$( echo -e "" )" options
+
+if [ $options == "T" ] || [ $options == "t" ]; then
+
+banner
+
+pkg install -y python golang nmap metasploit hydra sqlmap crunch figlet toilet perl curl git wget zsh dnsutils coreutils nano wireless-tools wireless-tools-static php apache2 &> /dev/null
+wget -O install-nethunter-termux https://offs.ec/2MceZWr && chmod +x install-nethunter-termux && bash install-nethunter-termux && sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && git clone https://github.com/adi1090x/termux-style && cd termux-style && bash install && mv setup $HOME/kali-arm64/root/setup && echo "clear && nh -r" > $HOME/.bashrc
+
+elif [ $options == "N" ] || [ $options == "n" ]; then 
+
+if [ $EUID -ne 0 ]; then
+
+echo -e $r"Please run script as root and on Nethunter!\n"
+
+fi
+
+clear && echo -e $b"Checking and Install...\n"
+echo -e "deb http://mirror1.ku.ac.th/kali/ kali-rolling main contrib non-free\n#deb-src http://mirror1.ku.ac.th/kali/ kali-rolling main contrib non-free" > /etc/apt/sources.list && apt update &> /dev/null && apt upgrade -y &> /dev/null && apt install ufw fonts-thai-tlwg hashcat medusa python-pip python3-pip jq pv themole mingw-w64 figlet toilet zsh zsh-syntax-highlighting zsh-autosuggestions && chsh -s /bin/zsh
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+elif [ -z $options ]; then
+
+echo -e $r"\nI dont understand your command!\n" && main_module
+
+else
+
+echo -e $r"\nInvalid command.\n" && main_module
+
+fi
+
+}
+
+main_module
