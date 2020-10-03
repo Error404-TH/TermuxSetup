@@ -40,13 +40,14 @@ echo -e "+     [E] - Exit               +"
 echo -e "+                              +"
 echo -e "+------------------------------+\n"
 
-read -p "$( echo -e "" )" options
+read -p "$( echo -e $y"Setup: $g")" options
 
 if [ $options == "T" ] || [ $options == "t" ]; then
 
 banner
 
 pkg install -y python golang nmap metasploit hydra sqlmap crunch figlet toilet perl curl git wget zsh dnsutils coreutils nano wireless-tools wireless-tools-static php apache2 &> /dev/null
+pip install python-nmap nmap &> /dev/null && pip3 install python-nmap nmap &> /dev/null
 wget -O install-nethunter-termux https://offs.ec/2MceZWr && chmod +x install-nethunter-termux && bash install-nethunter-termux && sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && git clone https://github.com/adi1090x/termux-style && cd termux-style && bash install && mv setup $HOME/kali-arm64/root/setup && echo "clear && nh -r" > $HOME/.bashrc
 
 elif [ $options == "N" ] || [ $options == "n" ]; then 
@@ -59,6 +60,7 @@ fi
 
 clear && echo -e $b"Checking and Install...\n"
 echo -e "deb http://mirror1.ku.ac.th/kali/ kali-rolling main contrib non-free\n#deb-src http://mirror1.ku.ac.th/kali/ kali-rolling main contrib non-free" > /etc/apt/sources.list && apt update &> /dev/null && apt upgrade -y &> /dev/null && apt install ufw fonts-thai-tlwg hashcat medusa python-pip python3-pip jq pv themole mingw-w64 figlet toilet zsh zsh-syntax-highlighting zsh-autosuggestions && chsh -s /bin/zsh
+pip install python-nmap nmap &> /dev/null && pip3 install python-nmap nmap &> /dev/null
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 elif [ -z $options ]; then
